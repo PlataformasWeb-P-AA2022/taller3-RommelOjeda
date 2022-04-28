@@ -17,7 +17,7 @@
       <p>Apellido: <input id="b" name="apellido" type="text"></p>   
       <p>Fecha:<input id="c" name="fecha"></p>
       <button type="submit">Generar Mensaje</button>
-      <p class="mensaje" id="mensajeFinal"></p>
+      <p id="mensajeFinal"></p>
          
     <script>
     $(document).ready(function() {
@@ -26,8 +26,21 @@
         var texto1 = $('#a').val();
         var texto2 = $('#b').val();
         var texto3 = $('#c').val();
+        
+      $.fn.multiline = function(text){
+      this.text(text);
+      this.html(this.html().replace(/\n/g,'<br/>'));
+      return this;
+      }
 
-        $('#mensajeFinal').text("Datos Ingresado: "+ texto1 + " " + texto2 + " "+ texto3);
+        //$('#mensajeFinal').text("Datos Ingresado: \n" + texto1 + "\n" + texto2 + "\n"+ texto3);  
+        $('#mensajeFinal').multiline("Datos Ingresados: \n" + texto1 + "\n" + texto2 + "\n"+ texto3);       
+
+        //Estilos
+        $("#mensajeFinal").css({
+	      "padding-left": "17em",
+        "margin-top": "-9em" 
+      	});
 
         console.log(texto1);
         console.log(texto2);
@@ -35,6 +48,7 @@
 
       });
     });
+    
   </script>
   </body>
 </html>
